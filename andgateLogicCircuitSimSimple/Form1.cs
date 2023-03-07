@@ -18,10 +18,10 @@ namespace andgateLogicCircuitSimSimple
         }
         circuitelectriccuintrerupatoare circuitulAND1 = new circuitelectriccuintrerupatoare();
         circuitelectriccuintrerupatoare circuitulAND2 = new circuitelectriccuintrerupatoare();
+        circuitelectriccuintrerupatoare circuitulAND3 = new circuitelectriccuintrerupatoare();
 
 
-      
-   
+
 
 
 
@@ -36,9 +36,13 @@ namespace andgateLogicCircuitSimSimple
             circuitulAND2.listaIntrerupatoareIntrare.Add(this.intrerupator4);
             circuitulAND2.listaIntrerupatoareIntrare.Add(this.intrerupator5);
             circuitulAND2.listaIntrerupatoareIesire.Add(this.intrerupator6);
+            //AND GATE 3
+            circuitulAND3.listaIntrerupatoareIntrare.Add(this.intrerupator7);
+            circuitulAND3.listaIntrerupatoareIntrare.Add(this.intrerupator8);
+            circuitulAND3.listaIntrerupatoareIesire.Add(this.intrerupator9);
 
 
-           
+
 
         }
 
@@ -53,36 +57,47 @@ namespace andgateLogicCircuitSimSimple
             else { return true; }
         
         }
+        public bool setNextInLink2()
+        {
+            if (circuitulAND2.listaIntrerupatoareIesire[0].value == "ON") { circuitulAND3.listaIntrerupatoareIntrare[0].value = "OFF"; return true; }
+            else if (circuitulAND2.listaIntrerupatoareIesire[0].value == "OFF") { circuitulAND3.listaIntrerupatoareIntrare[0].value = "ON"; return false; }
+            else { return true; }
 
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            //AND I1,I2 AND O3
+            //AND1 I1,I2 AND O3 
             circuitulAND1.ANDLogic(circuitulAND1.listaIntrerupatoareIntrare[0], circuitulAND1.listaIntrerupatoareIntrare[1], circuitulAND1.listaIntrerupatoareIesire[0]);
             setNextInLink();
 
+            //AND2 I1,I2 AND O3
+            circuitulAND2.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
+            setNextInLink2();
+
             circuitulAND2.listaIntrerupatoareIntrare[0].setUp();
-                circuitulAND2.listaIntrerupatoareIntrare[0].startUp();
+            circuitulAND2.listaIntrerupatoareIntrare[0].startUp();
+            circuitulAND2.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
+
+            //AND3 I1,I2 AND O3
+            circuitulAND3.ANDLogic(circuitulAND3.listaIntrerupatoareIntrare[0], circuitulAND3.listaIntrerupatoareIntrare[1], circuitulAND3.listaIntrerupatoareIesire[0]);
+            setNextInLink2();
+
+            circuitulAND3.listaIntrerupatoareIntrare[0].setUp();
+            circuitulAND3.listaIntrerupatoareIntrare[0].startUp();
+            circuitulAND3.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
+
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //AND I1,I2 AND O3
             circuitulAND2.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-           
-
-
-           
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //AND I1,I2 AND O3
-            circuitulAND2.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
 
         }
     }
