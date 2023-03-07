@@ -42,12 +42,25 @@ namespace andgateLogicCircuitSimSimple
 
         }
 
+
+        //i use this function just to preset the next in link list of intrerupator
+        //linked so c1o1 linked to c2i1 but before you must put the value of c2i1 to be the other value of
+        //c1o1 and then circuitulAND2 will change its value so will be same as c1o1 where he is linked 
+        public bool setNextInLink()
+        {
+            if (circuitulAND1.listaIntrerupatoareIesire[0].value == "ON") { circuitulAND2.listaIntrerupatoareIntrare[0].value = "OFF"; return true; }
+            else if (circuitulAND1.listaIntrerupatoareIesire[0].value == "OFF") { circuitulAND2.listaIntrerupatoareIntrare[0].value = "ON"; return false; }
+            else { return true; }
+        
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //AND I1,I2 AND O3
             circuitulAND1.ANDLogic(circuitulAND1.listaIntrerupatoareIntrare[0], circuitulAND1.listaIntrerupatoareIntrare[1], circuitulAND1.listaIntrerupatoareIesire[0]);
-           
-                circuitulAND2.listaIntrerupatoareIntrare[0].setUp();
+            setNextInLink();
+
+            circuitulAND2.listaIntrerupatoareIntrare[0].setUp();
                 circuitulAND2.listaIntrerupatoareIntrare[0].startUp();
             circuitulAND2.ANDLogic(circuitulAND2.listaIntrerupatoareIntrare[0], circuitulAND2.listaIntrerupatoareIntrare[1], circuitulAND2.listaIntrerupatoareIesire[0]);
 
