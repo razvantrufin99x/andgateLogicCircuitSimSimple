@@ -98,6 +98,8 @@ namespace andgateLogicCircuitSimSimple
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //AND I1,I2 AND O3
+            circuitulAND2.ANDLogic(circuitulAND3.listaIntrerupatoareIntrare[0], circuitulAND3.listaIntrerupatoareIntrare[1], circuitulAND3.listaIntrerupatoareIesire[0]);
 
         }
     }
